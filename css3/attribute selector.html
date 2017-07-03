@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>属性选择器</title>
+	<style>
+		section{
+			width:500px;
+			height: 140px;
+			background-color: #ccc;
+			margin:5px auto;
+		}
+		.part1 a[class ~= "download"]{
+			color: teal;
+			font-size: 20px;
+		}
+		.part2 a[class |= "download"]{
+			color: teal;
+			font-size: 20px;
+		}
+		.part3 a[class *= "download"]{
+			color: teal;
+			font-size: 20px;
+		}
+		.part4 a[class ^= "download"]{
+			color: teal;
+			font-size: 20px;
+		}
+		.part5 a[class $= "download"]{
+			color: teal;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<section class="part1">
+		<p>e[attr ~= 'value']:表示选中所有e标签中，属性attr的属性值列表中，包含有value值作为一个单独属性值的元素e —— 不管这个value值位于什么位置，只要存在就可以</p>
+		<div>
+			<a href="" class="download load">下载</a>
+			<a href="" class="music load download">下载</a>
+			<a href="" class="load download">下载</a>
+			<a href="" class="load download-music">下载</a>
+		</div>
+	</section>
+	<section class="part2">
+		<p>e[attr |= 'value']:表示选中所有e标签中，属性attr的属性值列表中，第一个属性值是以短横线“-”连接起来的字符列表，并且是以value开头的所有e标签（在有多个属性值存在的情况下，包含value的字符列表要排在首位）。或者是属性值只有一个，就是等于value，这样的e标签也行</p>
+		<div>
+			<a href="" class="download-music load">下载</a>
+			<a href="" class="load download-music">下载</a>
+			<a href="" class="download load">下载</a>
+			<a href="" class="download">下载</a>
+		</div>
+	</section>
+	<section class="part3">
+		<p>e[attr *= 'value']:表示选中所有e标签中，属性attr的属性值或者属性列表中，包含有value这个字符串就可以了。（不论这个字符串位于什么位置,这个字符串可以是一个单独的属性值，也可以是某个属性值的一部分）</p>
+		<div>
+			<a href="" class="download-music load">下载</a>
+			<a href="" class="load download">下载</a>
+			<a href="" class="download load">下载</a>
+		</div>
+	</section>
+	<section class="part4">
+		<p>e[attr ^= 'value']:表示选中所有e标签中，属性attr的属性值或者属性列表中，第一个属性值是value，或者第一个属性值中的字一个字符串是value 。</p>
+		<div>
+			<a href="" class="download-music load">下载</a>
+			<a href="" class="load download">下载</a>
+			<a href="" class="download load">下载</a>
+			<a href="" class="music-download load">下载</a>
+		</div>
+	</section>
+	<section class="part5">
+		<p>e[attr $= 'value']:表示选中所有e标签中，属性attr的属性值或者属性列表中，最后一个属性值是value，或者最后一个属性值中的最后一个字符串是value。</p>
+		<div>
+			<a href="" class="load download-music">下载</a>
+			<a href="" class="load download">下载</a>
+			<a href="" class="download load">下载</a>
+			<a href="" class="load music-download">下载</a>
+		</div>
+	</section>
+	
+</body>
+</html>

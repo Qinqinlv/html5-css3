@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>justify-content调整主轴对齐</title>
+	<style>
+	section header p{
+		height: 40px;
+		background-color: teal;
+		line-height: 40px;
+		margin:0;
+		padding: 0;
+	}
+		section .flex{
+			position: relative;
+			margin-top: 60px;
+			
+		}
+		section .flex ul{
+			display: flex;
+			min-height: auto;
+			list-style: none;
+
+		}
+		section .flex li{
+			width: 200px;
+			height: 200px;
+			margin:10px 10px 0 0 ;
+			background-color: pink;
+			line-height: 200px;
+			text-align: center;
+			
+		}
+		section .flex::after{
+			content: attr(data-brief);
+			position: absolute;
+			top:0;
+			left:0;
+			width: 100%;
+			height: 100%;
+			display: none;
+			background-color: rgba(0,0,0,.1);
+		}
+		section .flex:hover::after{
+			display: block;
+			text-align: center;
+			font:20px / 200px "Microsoft YaHei";
+		}
+		section .flex::before{
+			content:attr(data-disc);
+			position: absolute;
+			width: 100%;
+			height: 40px;
+			font:20px/40px "Microsoft YaHei";
+			top:-40px;
+			left: 0;
+			background-color: orange;
+		}
+		section .justify1 ul{
+			justify-content:flex-start;
+		}
+		section .justify2 ul{
+			justify-content:flex-end;
+		}
+		section .justify3 ul{
+			justify-content: center;
+		}
+		section .justify4 ul{
+			justify-content:space-around;
+		}
+		section .justify5 ul{
+			justify-content:space-between;
+		}
+		
+	</style>
+</head>
+<body>
+	<section>
+		<header>
+			<p>justify-content设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式。 </p>
+			<p>主轴对齐方式：flex-start、flex-end、center、space-round、space-between</p>
+		</header>
+		<div class="flex" data-brief="justify-content:默认" data-disc="justify-content:默认">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="flex justify1" data-brief="justify-content:flex-start" data-disc="对齐排在首位的子元素(起点对齐)">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="flex justify2" data-brief="justify-content:flex-end" data-disc="对齐排在末位的子元素(终点对齐)">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="flex justify3" data-brief="justify-content:center" data-disc="对齐排在中间的子元素(中间对齐)">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="flex justify4" data-brief="justify-content:space-around" data-disc="子元素均分剩下来的空间，均匀排开(环绕)">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="flex justify5" data-brief="justify-content:space-between" data-disc="两端对齐，也就是对齐首位和末位的子元素(两端对齐)">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+	</section>
+</body>
+</html>

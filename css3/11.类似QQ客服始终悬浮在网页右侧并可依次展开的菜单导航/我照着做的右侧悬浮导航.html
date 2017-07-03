@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>类似QQ客服始终悬浮在网页右侧并可依次展开的菜单导航</title>
+<style>
+body {
+  background-color: #ccc;
+}
+    .box {
+      width: 140px;
+      position: fixed;
+      /*margin-top: 100px;*/
+      right: 0;
+      top:100px;
+    }
+    .box a {
+      display: block;
+      height: 30px;
+      color: #333;
+      text-decoration: none;
+      line-height: 30px;
+      position: relative;
+      padding-left: 50px;
+      margin-bottom: 2px;
+      background-color: #fff;
+      
+    }
+    .box a span {
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 30px;
+      text-align: center;
+      color: #fff;
+      background-color: rgba(0,0,0,.5); 
+
+    }
+    .box a:hover {
+      color: #2b5;
+    }
+    .box a:hover span{
+      color: #fff;
+      background-color: #2b5;
+    }
+</style>
+<!-- <link href="css/css.css" type="text/css" rel="stylesheet" /> -->
+<script src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+   $(function() {
+       var timer = null;
+       $(".box").hover(function() {
+              clearTimeout(timer);
+             timer = setTimeout(function() {
+                    $(".box").find("a").each(function(index,el){
+                           /*alert(index);*/
+                           setTimeout(function() {
+                                  $(el).stop().animate({"right":0},300);
+                           },50*index);
+                    })
+             },200)
+       }, function() {
+              if(timer){
+                     clearTimeout(timer);
+              }
+              $(this).find("a").each(function(index,el) {
+                     setTimeout(function(){
+                            $(el).stop().animate({"right":-110},300)
+                     },50*index);
+              })
+       })
+   })
+</script>
+</head>
+<body>
+<div class="box">
+       <a href='#'><span>0</span>Flash素材</a>
+       <a href='#'><span>1</span>菜单导航</a>
+       <a href='#'><span>2</span>时间日期</a>
+       <a href='#'><span>3</span>焦点图</a>
+       <a href='#'><span>4</span>tab标签</a>
+       <a href='#'><span>5</span>jquery特效</a>
+       <a href='#'><span>6</span>在线客服</a>
+       <a href='#'><span>7</span>广告代码</a>
+       <a href='#'><span>8</span>相册代码</a>
+       <a href='#'><span>9</span>图片特效</a>
+       <a href='#'><span>10</span>名站特效</a>
+       <a href='#'><span>11</span>视频播放</a>
+       <a href='#'><span>12</span>其他代码</a>
+</div>
+<div style="height:1000px;"></div>
+</body>
+</html>

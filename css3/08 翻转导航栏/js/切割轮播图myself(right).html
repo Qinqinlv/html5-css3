@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正确的切割轮播图</title>
+	<style>
+	* {
+		margin:0;
+		padding: 0;
+	}
+		.box {
+			width: 560px;
+			height: 300px;
+			margin:100px auto;
+		}
+		.box ul {
+			list-style: none;
+			width: 100%;
+			height: 100%;\position: relative;
+			
+		}
+		.box ul li {
+			width: 112px;
+			height: 100%;
+			position: absolute;
+			top:0;
+			left: 0;
+		}
+		.box ul li > div:nth-child(1) {
+			width: 100%;
+			height: 100%;
+			background: url()
+			transform: rotate(0deg) translateZ(150px);
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<ul>
+			<li>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</li>
+			<li>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</li>
+			<li>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</li>
+			<li>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</li>
+			<li>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

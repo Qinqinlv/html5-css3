@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS3和jQuery共同使用，简化操作</title>
+    <style>
+        .demo {
+            display: inline-block;
+            transition:transform 1s;
+        }
+        .imgrotate {
+            transform: rotate(360deg);
+        }
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".demo").on("click",function () {
+                $(this).toggleClass('imgrotate');
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="demo">
+        <img src="zhuan.jpg" alt="">
+    </div>
+</body>
+</html>

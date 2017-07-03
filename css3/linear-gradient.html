@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>径向渐变</title>
+	<style>
+		p{
+			height: 30px;
+			font:20px/30px 'Microsoft YaHei';
+			background-color: orange;
+		}
+		.item{
+			width: 200px;
+			height: 200px;
+			margin: 20px 0;
+			background-image: linear-gradient(yellow,green);
+		}
+		.module1{
+			background-image: repeating-linear-gradient(90deg,yellow 10%,green 40%);
+			
+		}
+	</style>
+</head>
+<body>
+		<section>
+			<header>
+				<p>默认情况下的径向渐变方向 ——从上到下，也就是渐变轴的180deg</p>
+			</header>
+			<div class="item"></div>
+		</section>
+		<section>
+			<header>
+				<p>默认情况下的径向渐变方向 ——从上到下，也就是渐变轴的180deg</p>
+			</header>
+			<div class="item module1"></div>
+		</section>
+</body>
+</html>

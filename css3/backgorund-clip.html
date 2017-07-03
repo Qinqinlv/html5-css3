@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>剪切图片</title>
+	<style>
+		.clip-img{
+			width: 130px;
+			height: 130px;
+			box-sizing: border-box;
+			padding: 20px;
+			background: url(images/bg.jpg) no-repeat center top;
+			margin:20px auto;
+			position: relative;
+			
+		}
+		.clip-img::before{
+			content: '';
+			display: block;
+			width: 90px;
+			height: 90px;
+			background-color: #fff;
+		}
+		.clip-img::after{
+			content:'';
+			box-sizing: border-box;
+			width: 130px;
+			height: 130px;
+			padding: 20px;
+			position: absolute;
+			top:40px;
+			left: 40px;
+			background: url(images/bg.jpg) no-repeat center center;
+			background-clip: content-box;
+		}
+	</style>
+</head>
+<body>
+	<div class="clip-img">
+		
+	</div>
+</body>
+</html>

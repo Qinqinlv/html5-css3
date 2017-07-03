@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我做的长方体轮播图</title>
+    <style>
+        * { margin: 0; padding: 0}
+        .demo {
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+            position: relative;
+        }
+        ul {list-style: none;}
+        ul {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform:scaleX(2.5) scaleY(1.5) rotateX(0deg);
+            transition:transform 2s;
+        }
+        ul li {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 200px;
+            color: white;
+            font-size:40px;
+            position: absolute;
+        }
+        ul li:nth-child(1) {
+            transform: rotateX(0deg)  translateZ(100px);
+            background: url(images/1.jpg) no-repeat center center;
+            -webkit-background-size:cover;
+            background-size:cover;
+        }
+        ul li:nth-child(2) {
+            transform: rotateX(-90deg) translateZ(100px);
+            background: url(images/2.jpg) no-repeat center center;
+            -webkit-background-size:cover;
+            background-size:cover;
+        }
+        ul li:nth-child(3) {
+            transform: rotateX(-180deg) translateZ(100px);
+        }
+        ul li:nth-child(3) > div {
+            width:100%;
+            height:100%;
+            transform: rotate(180deg);
+            background: url(images/3.jpg) no-repeat center center;
+            -webkit-background-size:cover;
+            background-size:cover;
+        }
+        ul li:nth-child(4) {
+            transform: rotateX(-270deg) translateZ(100px);
+            background: url(images/4.jpg) no-repeat center center;
+            -webkit-background-size:cover;
+            background-size:cover;
+        }
+        ul li:nth-child(5) {
+            background: url(images/2.jpg) no-repeat center center;
+            -webkit-background-size:cover;
+            background-size:cover;
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+        ul li:nth-child(6) {
+            background: url(images/4.jpg) no-repeat center center;
+            -webkit-background-size:cover;
+            background-size:cover;
+            transform: rotateY(90deg) translateZ(100px);
+        }
+        .demo span {
+            position: absolute;
+            bottom:-10px;
+            left:235px;
+            width:30px;
+            height:30px;
+            border-top:3px solid #000;
+            border-right:3px solid #000;
+            transform: rotate(45deg);
+            cursor: pointer;
+            z-index:23;
+        }
+        .demo span.prev {
+            left:-85px;
+            transform:rotate(-135deg);
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var $num = 0;
+            $(".next").on("click",function () {
+                $num++;
+                $(".demo ul").css("transform","scaleX(2.5) scaleY(1.5) rotateY("+90 * $num+"deg)")
+            })
+
+            $(".prev").on("click",function () {
+                $num--;
+                $(".demo ul").css("transform","scaleX(2.5) scaleY(1.5) rotateY("+90 * $num+"deg)")
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="demo">
+    <ul>
+        <li></li>
+        <li></li>
+        <li>
+            <div></div>
+        </li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <span class="prev"></span><span class="next"></span>
+</div>
+</body>
+</html>>

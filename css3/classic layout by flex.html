@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>经典三列布局</title>
+	<style>
+	header,footer,section,div,ul{
+		margin:0;
+		padding: 0;
+	}
+		header,footer,section{
+			text-align: center;
+		}
+		body{
+			min-height: 500px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+		header{
+		
+			background-color: pink;
+			flex:0 0 100px;
+		}
+		section{
+			display: flex;
+			flex: 1;
+			background-color: #eee;
+		}
+		section .main{
+			flex:0 0 50%;
+			background-color: yellow;
+		}
+		section .nav{
+			flex: 1;
+			background-color: orange;
+		}
+		section .aside{
+			flex: 2;
+			background-color: teal;
+		}
+		footer{
+			background-color: green;
+			flex:0 0 80px;
+		}
+		footer ul{
+			display: flex;
+			justify-content:space-between;
+			list-style: none;
+		}
+		footer ul li{
+			flex: 1;
+			line-height: 60px;
+			text-align: center;
+			margin:10px;
+			background-color: violet;
+		}
+	</style>
+</head>
+<body>
+	<header>header头部</header>
+	<section>
+		<div class="nav">nav导航栏</div>
+		<div class="main">文章主体</div>
+		<div class="aside">侧边栏</div>
+	</section>
+	<footer>
+		<nav>
+			<ul>
+				<li>QQ聊天</li>
+				<li>商品分类</li>
+				<li>我的订单</li>
+				<li>购物车</li>
+			</ul>
+		</nav>
+	</footer>
+</body>
+</html>

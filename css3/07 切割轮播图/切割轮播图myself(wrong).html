@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>切割轮播图</title>
+	<style>
+		* {
+			margin:0;
+			padding: 0;
+		}
+		.demo {
+			width: 560px;
+			height: 300px;
+			margin:200px auto;
+			position: relative;
+			
+		}
+		.demo > ul {
+			list-style: none;
+			height: 100%;
+			transform-style: preserve-3d;
+		}
+		.demo > ul > li {
+			width: 100px;
+			height: 100px;
+			float: left;
+			background-color: orange;
+			position: relative;		
+			transform-style: preserve-3d;
+			transform:scaleX(1.12) scaleY(3) scaleZ(3) rotateX(0deg);
+		}
+		.demo > ul > li > div {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top:0;
+			left:0;
+		}
+		.demo > ul > li > div:nth-of-type(1) {
+			background: url(images/1.png) no-repeat;
+			background-size: cover;	
+			transform: rotate(0deg) translateZ(50px) ;
+		}
+		.demo > ul > li > div:nth-of-type(2) {
+			background: url(images/2.png) no-repeat;
+			background-size: cover;	
+			transform: rotateX(-90deg) translateZ(50px) ;
+		}
+		.demo > ul > li > div:nth-of-type(3) {
+			background: url(images/3.png) no-repeat;	
+			background-size: cover;
+			transform: rotateY(180deg) translateZ(50px) ;
+		}
+		.demo > ul > li > div:nth-of-type(4) {
+			background: url(images/4.png) no-repeat;
+			background-size: cover;	
+			transform: rotateX(90deg) translateZ(50px) ;
+		}
+
+		/*第1个li中的div背景平铺位置都是25% top;*/
+		.demo > ul > li:nth-of-type(1) > div {
+			background-position: left top;
+		}
+		.demo > ul > li:nth-of-type(1) {
+			transition:transform 1s;
+		}
+		
+		/*第2个li中的div背景平铺位置都是25% top;*/
+		.demo > ul > li:nth-of-type(2) > div {
+			background-position: -112px top;
+		}
+		.demo > ul > li:nth-of-type(2) {
+			transition:transform 1s .2s;
+		}
+		
+		/*第3个li中的div背景平铺位置都是50% top;*/
+		.demo > ul > li:nth-of-type(3) > div {
+			background-position: -224px top;
+		}
+		.demo > ul > li:nth-of-type(3) {
+			transition:transform 1s .4s;
+		}
+		/*第4个li中的div背景平铺位置都是75% top;*/
+		.demo > ul > li:nth-of-type(4) > div{
+			background-position: -336px top;
+		}
+		.demo > ul > li:nth-of-type(4) {
+			transition:transform 1s .6s;
+		}
+		.demo > ul > li:nth-of-type(5) > div{
+			background-position: -448px top;
+		}
+		.demo > ul > li:nth-of-type(5) {
+			transition:transform 1s .8s;
+		}
+		.demo span {
+			position: absolute;
+			top:50%;
+			margin-top: -15px;
+			left: 0px;
+			width: 50px;
+			height: 50px;
+			background-color: rgba(0,0,0,.4);
+		}
+		.demo span.next{
+			
+			left: 398px;
+		}
+		.demo span::before{
+			content: "";
+			position: absolute;
+			top:50%;
+			left: 50%;
+			margin:-10px 0 0 -5px;
+			width: 20px;
+			height: 20px;
+			border-top: 2px solid #fff;
+			border-right: 2px solid #fff;
+			transform: rotate(-135deg);
+		}
+		.demo span.next::before {
+			margin:-10px 0 0 -15px;
+			transform: rotate(45deg);
+		}
+	</style>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script>
+		$(function () {
+			var $num = 0;
+			$(".demo > .prev").on("click",function () {
+				$num++;
+				$(".demo li").css("transform","rotateX("+(-90) * $num+"deg) scaleX(1.12) scaleY(3) scaleZ(3)");
+			})
+
+			$(".demo > .next").on("click",function () {
+				$num--;
+				$(".demo li").css("transform","rotateX("+(-90) * $num+"deg) scaleX(1.12) scaleY(3) scaleZ(3)");
+			})
+		})
+	</script>
+</head>
+<body>
+	<div class="demo">
+		<ul>
+			<li>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</li>
+			<li>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</li>
+			<li>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</li>
+			<li>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</li>
+			<li>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</li>
+		</ul>
+		<span class="prev"></span><span class="next"></span>
+	</div>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3模拟jQuery动画</title>
+	<style>
+		body{
+			padding:0;
+			margin:0;
+			font:16px 'Microsoft Yahei';
+			background-color: #f3f3f3;
+		}
+		.wrapper>header{
+			height: 80px;
+			font:30px / 80px "Microsoft Yahei";
+			text-align: center;		
+		}
+		.wrapper section{
+			width: 90%;
+			height: 300px;
+			margin:0 auto 20px;
+			background-color: #fff;
+		}
+		.wrapper section>header{
+			font-size: 18px;
+			line-height: 40px;
+			background-color: #ccc;
+		}
+		.wrapper section .box {
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flex;
+			display: -o-flex;
+			display: flex;
+			justify-content: space-between;
+		}
+		.wrapper section .box div{
+			width: 200px;
+			height: 200px;
+			background-color: pink;
+			position: relative;
+		}
+		.wrapper section .box .wrap-box1::before,
+		.wrapper section .box .wrap-box2::before{
+			content: attr(data-brief);
+			width: 100%;
+			height: 50%;
+			text-align: center;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-color: rgba(20,20,20,.2);
+			display: none;		
+		}
+		.wrapper section .box .wrap-box1:hover::before,
+		.wrapper section .box .wrap-box2:hover::before{
+			display: block;	
+		}
+		/*CSS show*/
+		.wrapper .show .wrap-box1{
+			width: 10px;
+			height: 10px;
+			opacity: 0;
+			transition: all 2s linear;
+		}
+		.wrapper .show .wrap-box1:hover{
+			width: 200px;
+			height: 200px;
+			opacity: 1;
+		}
+		.wrapper .show .wrap-box2{
+			display: none;
+		}
+		/*hide*/
+		.wrapper .hide .wrap-box1{
+			transition: all 2s linear;
+		}
+		.wrapper .hide .wrap-box1:hover{
+			width: 0;
+			height: 0;
+			opacity: 0;
+		}
+
+		/*fadeIn*/
+		.wrapper .fadeIn .wrap-box1{
+			opacity: 0;
+			transition: all 2s linear;
+		}
+		.wrapper .fadeIn .wrap-box1:hover{
+			opacity: 1;
+		}
+		.wrapper .fadeIn .wrap-box2{
+			display: none;
+		}
+
+		/*fadeOut*/
+		.wrapper .fadeOut .wrap-box1{
+			transition: all 2s linear;
+		}
+		.wrapper .fadeOut .wrap-box1:hover{
+			opacity: 0;
+		}
+
+		/*slideDown*/
+		.wrapper .slideDown .wrap-box1{
+			height: 10px;
+			transition: all 2s linear;
+		}
+		.wrapper .slideDown .wrap-box1:hover{
+			height: 200px;
+		}
+		.wrapper .slideDown .wrap-box2{
+			display: none;
+		}
+	</style>
+	<script src="jquery-1.11.1.min.js"></script>
+	<script>
+	$(function(){
+		setTimeout(function () {
+		$('.show .wrap-box2').show(1000);
+	},1000);
+
+	setTimeout(function () {
+		$('.hide .wrap-box2').hide(1000);
+	},1000);
+
+	setTimeout(function () {
+		$('.fadeIn .wrap-box2').fadeIn(1000);
+	},1000);
+
+	setTimeout(function () {
+		$('.fadeOut .wrap-box2').fadeOut(1000);
+	},1000);
+		
+		setTimeout(function () {
+		$('.slideDown .wrap-box2').slideDown(1000);
+	},1000);
+		
+	})
+		
+	</script>
+</head>
+<body>
+	<div class="wrapper">
+		<header>CSS3模拟jQuery动画效果</header>
+		<section class="show">
+			<header>show</header>
+			<div class="box">
+				<div class="wrap-box1" data-brief="CSS模拟的show"></div>
+				<div class="wrap-box2" data-brief="jQuery模拟的show"></div>
+			</div>
+		</section>
+		<section class="hide">
+			<header>hide</header>
+			<div class="box">
+				<div class="wrap-box1" data-brief="CSS模拟的hide"></div>
+				<div class="wrap-box2" data-brief="jQuery模拟的hide"></div>
+			</div>		
+		</section>
+		<section class="fadeIn">
+			<header>fadeIn</header>
+			<div class="box">
+			<div class="wrap-box1" data-brief="CSS模拟的fadeIn"></div>
+			<div class="wrap-box2" data-brief="jQuery模拟的fadeIn"</div>
+			</div>
+		</section>
+		<section class="fadeOut">
+			<header>fadeOut</header>
+			<div class="box">
+			<div class="wrap-box1" data-brief="CSS模拟的fadeOut"></div>
+			<div class="wrap-box2" data-brief="jQuery模拟的fadeOut"></div>
+			</div>
+		</section>
+		<section class="slideDown">
+			<header>slideDown</header>
+			<div class="box">	
+			<div class="wrap-box1" data-brief="CSS模拟的slideDown"></div>
+			<div class="wrap-box2" data-brief="jQuery模拟的slideDown"></div>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

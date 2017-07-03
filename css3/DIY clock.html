@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自己用CSS堆叠出来的钟表</title>
+	<style>
+	body,div{
+		margin:0;
+		padding: 0;
+	}
+	.box{
+		margin-top: 100px;
+	}
+		.box .demo{
+			width: 200px;
+			height: 200px;
+			margin:auto;
+			border: 10px solid #000;
+			border-radius: 50%;
+			position: relative;	
+		}
+		.box .demo .inner{
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			position: relative;	
+		}
+		.box .demo .inner .line{
+			height: 200px;
+			width: 4px;
+			position: absolute;
+			top:0;
+			left: 50%;
+			background-image: linear-gradient(to top,#ccc 12%,transparent 12%,transparent 88%,#ccc 88%);
+			transform: translate(-50%,0);	
+			transform-origin: center center;
+		}
+		.box .demo .inner .line:nth-child(3n){
+			width: 6px;
+		}
+		.box .demo .inner .line1{
+			transform: translate(-50%,0) rotate(30deg);
+		}.box .demo .inner .line2{
+			transform: translate(-50%,0) rotate(60deg);
+		}
+		.box .demo .inner .line3{
+			transform: translate(-50%,0) rotate(90deg);
+		}
+		.box .demo .inner .line4{
+			transform:translate(-50%,0)  rotate(120deg);
+		}
+		.box .demo .inner .line5{
+			transform: translate(-50%,0) rotate(150deg);
+		}
+		.box .demo .inner .line6{
+			transform: translate(-50%,0) rotate(180deg);
+		}
+	
+		.box .demo .dot{
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: #000;
+			position: absolute;
+			z-index: 3;
+			top:50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+		.box .demo .pointer{
+			position: absolute;
+			left: 50%;
+			transform: translate(-50%,0);
+			transform-origin: center bottom;
+		}
+		.box .demo .hour{
+			width: 6px;
+			height: 60px;
+			background-color: #000;
+			top:40px;
+			animation: hour 43200s linear infinite;
+			transform: rotate(345deg);
+		}
+		.box .demo .mini{
+			width: 4px;
+			height: 75px;
+			background-color: #000;
+			top:25px;
+			animation:mini 3600s steps(60) infinite;
+		}
+		.box .demo .second{
+			width: 2px;
+			height: 85px;
+			background-color: #f00;
+			top:15px;
+			animation:rotation 60s steps(60) infinite forwards;
+		}
+		@keyframes rotation{
+			from{
+				transform: translate(-50%,0) rotate(0deg);
+			}
+			to{
+				transform: translate(-50%,0) rotate(360deg);
+			}
+		}
+		@keyframes hour{
+			from{
+				transform: translate(-50%,0) rotate(-12deg);
+			}
+			to{
+				transform: translate(-50%,0) rotate(348deg);
+			}
+		}
+		@keyframes mini{
+			from{
+				transform: translate(-50%,0) rotate(-150deg);
+			}
+			to{
+				transform: translate(-50%,0) rotate(210deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="demo">
+			<div class="inner">
+				<div class="line line1"></div>
+				<div class="line line2"></div>
+				<div class="line line3"></div>
+				<div class="line line4"></div>
+				<div class="line line5"></div>
+				<div class="line line6"></div>
+			</div>	
+			<div class="dot"></div>
+			<div class="pointer hour"></div>
+			<div class="pointer mini"></div>
+			<div class="pointer second"></div>
+		</div>
+	</div>
+</body>
+</html>

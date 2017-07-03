@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>引用在线生成的字体</title>
+	<style>
+		@font-face {font-family: "webfont";
+  src: url('online create font/webfont.eot'); /* IE9*/
+  src: url('online create font/webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('online create font/webfont.woff') format('woff'), /* chrome、firefox */
+  url('online create font/webfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('online create font/webfont.svg#webfont') format('svg'); /* iOS 4.1- */
+}
+
+@font-face {font-family: "webfont2";
+  src: url('online-create-font2/webfont.eot'); /* IE9*/
+  src: url('online-create-font2/webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('online-create-font2/webfont.woff') format('woff'), /* chrome、firefox */
+  url('online-create-font2/webfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('online-create-font2/webfont.svg#webfont') format('svg'); /* iOS 4.1- */
+}
+	p:first-child{
+		font-family: "webfont";
+		font-size: 30px;
+		text-align: center;
+		line-height: 40px;
+	}
+	p:nth-child(2){
+		font-family: "webfont2";
+		font-size: 30px;
+		text-align: center;
+		line-height: 40px;
+	}
+	</style>
+</head>
+<body>
+	<p>英雄难过美人关，我不是英雄，美人让我过了关</p>
+	<p>英雄难过美人关，我不是英雄，美人让我过了关</p>
+</body>
+</html>

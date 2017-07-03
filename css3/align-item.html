@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>align-items 调整侧轴方向的对齐方式</title>
+	<style>
+	section header p{
+		height: 40px;
+		background-color: teal;
+		font-size: 25px;
+		line-height: 40px;
+		margin:0;
+		padding: 0;
+	}
+		section .flex{
+			position: relative;
+			margin-top: 60px;
+			
+		}
+		section .flex ul{
+			display: flex;
+			min-height: 600px;
+			list-style: none;
+
+		}
+		section .flex li{
+			width: 200px;
+			height: 200px;
+			text-align: center;
+			line-height: 200px;
+			margin: 10px;
+			background-color: pink;
+		}
+		section .flex li:nth-child(2){
+			width: 300px;
+			height: 100px;
+			line-height: 100px;
+		}
+		section .flex::after{
+			content: attr(data-brief);
+			position: absolute;
+			top:0;
+			left:0;
+			width: 100%;
+			height: 100%;
+			display: none;
+			background-color: rgba(0,0,0,.1);
+		}
+		section .flex:hover::after{
+			display: block;
+			text-align: center;
+			font:20px / 200px "Microsoft YaHei";
+		}
+		section .flex::before{
+			content:attr(data-disc);
+			position: absolute;
+			width: 100%;
+			height: 40px;
+			font:20px/40px "Microsoft YaHei";
+			top:-40px;
+			left: 0;
+			background-color: orange;
+		}
+		section .align1 ul{
+			align-items:flex-start;
+		}
+		section .align2 ul{
+			align-items:flex-end;
+		}
+		section .align3 ul{
+			align-items:center;
+		}
+		section .align4 ul{
+			align-items:baseline;
+		}
+		section .align5 ul{
+			align-items: stretch;
+		}
+		section .align5 ul li{
+			height: auto;
+		}
+	</style>
+</head>
+<body>
+	<section>
+		<header>
+			<p>调整侧轴方向的对齐方式，包括flex-start/flex-end/center/baseline/stretch </p>
+		</header>
+		<div class="flex" data-brief="align-items:默认" data-disc="align-items:默认">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="flex align1" data-brief="align-items:flex-start" data-disc="(起点对齐)">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="flex align2" data-brief="align-items:flex-end" data-disc="(终点对齐)">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="flex align3" data-brief="align-items:center" data-disc="(中间对齐)">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="flex align4" data-brief="align-items:baseline" data-disc="(基线环绕)">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="flex align5" data-brief="align-items:stretch" data-disc="(拉伸对齐)">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+	</section>
+</body>
+</html>

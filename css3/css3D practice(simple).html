@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2D动画中的rotateY</title>
+	<style>
+	body {
+		perspective: 700px;
+	}
+		.demo,.box{
+			width: 200px;
+			height: 200px;
+			margin:10px auto;
+			background-color: orange;
+			transform: rotateY(60deg);
+		}
+		.box1 {
+			margin:50px auto;
+			transform: rotateX(60deg);
+		}
+		.box2 {
+			margin:50 auto;
+			transform: rotateZ(60deg);
+		}
+		.box3 {
+			margin:60px auto;
+			transform: rotate(60deg);
+		}
+		/*2D旋转只有一个值，效果是顺时针或者是逆时针在平面上的转动。和3D中rotateZ()的旋转效果一样。*/
+	</style>
+</head>
+<body>
+	<div class="demo"></div>
+	<div class="box box1"></div>
+	<div class="box box2"></div>
+	<div class="box box3"></div>
+</body>
+</html>

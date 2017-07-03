@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>box-shadow盒阴影</title>
+	<style>
+		body, ul, li, dl, dt, dd, h1, h2, h3, h4, h5 {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			background-color: #F7F7F7;
+		}
+
+		.wrapper {
+			width: 1000px;
+			margin: 0 auto;
+			padding: 20px;
+			box-sizing: border-box;
+		}
+
+		header {
+			padding: 20px 0;
+			margin-bottom: 20px;
+			text-align: center;
+		}
+
+		header h3 {
+			line-height: 1;
+			font-weight: normal;
+			font-size: 28px;
+		}
+
+		.main {
+			/*overflow: hidden;*/
+		}
+
+		.main:after {
+			content: '';
+			clear: both;
+			display: block;
+		}
+
+		.main .item {
+			width: 210px;
+			height: 210px;
+			margin: 0 30px 30px 0;
+			display: flex;
+			position: relative;
+			background-color: #FFF;
+			float: left;
+			box-shadow: 2px 2px 5px #CCC;
+		}
+		
+		.main .item:after {
+			/*这种写法很性感*/
+			content: attr(data-brief);
+			display: block;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			line-height: 210px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			color: #FFF;
+			font-family: '微软雅黑';
+			white-space: nowrap;
+			font-size: 18px;
+			background-color: rgba(170, 170, 170, 0);
+			z-index: -1;
+			transition: all 0.3s ease-in;
+		}
+
+		.main .item:hover:after {
+			background-color: rgba(170, 170, 170, 0.6);
+			z-index: 100;
+		}
+
+		.main .item:nth-child(4n) {
+			margin-right: 0;
+		}
+
+		/*.main .item:nth-last-child(-n+5) {
+			margin-bottom: 0;
+		}*/
+
+		/* 以上是骨架样式 */
+		.box-shadow {
+			width: 100px;
+			height: 100px;
+			border: 1px solid #DDD;
+			margin: auto;
+		}
+		
+		/*标准写法*/
+		.item:nth-child(1) .box-shadow {
+			box-shadow: 5px 5px 2px red;
+		}
+		
+		/*水平偏移量 正值向右 负值向左 垂直正值向下 负值向上*/
+		.item:nth-child(2) .box-shadow {
+			box-shadow: -5px -5px 3px green;
+		}
+		
+		/*上面有阴影*/
+		.item:nth-child(3) .box-shadow {
+			box-shadow: 0 -5px 3px orange;
+		}
+
+		/*下面有阴影*/
+		.item:nth-child(4) .box-shadow {
+			box-shadow: 0 5px 3px blue;
+		}
+
+
+		/*不设置模糊度blur*/
+		.item:nth-child(5) .box-shadow {
+			box-shadow: 5px 5px 0 red;
+		}
+
+		/*设置模糊度*/
+		.item:nth-child(6) .box-shadow {
+			box-shadow: 5px 5px 5px green;
+		}
+
+		/*只设置spread扩展值*/
+		.item:nth-child(7) .box-shadow {
+			box-shadow: 0 0 0 10px blue;
+		}
+
+		/*当扩展值为负数*/
+		.item:nth-child(8) .box-shadow {
+			box-shadow: 20px 20px 0 -10px orange;
+		}
+
+		/*当扩展值为0*/
+		.item:nth-child(9) .box-shadow {
+			box-shadow: 20px 20px 0 0 orange;
+		}
+
+		/*关于模糊度 从一个颜色值在一定距离内进行一个渐变至透明的过程*/
+
+		/*当扩展值为正数*/
+		.item:nth-child(10) .box-shadow {
+			box-shadow: 20px 20px 0 10px orange;
+		}		
+		
+		/*再次证明，这个扩展值的增减都是四周（上右下左）同时发生的。*/
+
+
+		/*多个内外阴影*/
+		.item:nth-child(11) .box-shadow {
+			box-shadow: inset 20px 20px 0px -10px green,
+						inset 20px 20px 20px -10px #000,
+						20px 20px 10px red,
+						20px 20px 10px blue;
+		}
+
+		/*是否会影响盒子布局*/
+		.item:nth-child(12) .box-shadow {
+			width: 90px;
+			height: 90px;
+			margin-right: 10px;
+			background-color: red;
+			float: left;
+			
+		}
+		
+		/*不会影盒子的布局*/
+		.item:nth-child(12) .left {
+			box-shadow: 50px 50px 50px 20px blue;
+		}
+
+		/*多个内阴影重叠，都是从左上角开始内阴影，所以有覆盖*/
+		.item:nth-child(13){
+			font:20px/20px "Microsoft YaHei";
+		}
+		.item:nth-child(13) .box-shadow {
+			box-shadow: 20px 20px 0 green inset,
+			inset 10px 10px 0 orange,
+			inset 30px 30px 0 teal ;
+			
+		}
+
+		/*多个外阴影重叠*/
+		.item:nth-child(14) .box-shadow {
+			box-shadow: 20px 20px 0 green ,
+			 10px 10px 0 orange,
+			 30px 30px 0 teal ;
+		}
+
+		/*模糊度从哪里开始，从最外往内数n个像素*/
+		.item:nth-child(15) .box-shadow {
+			box-shadow: 5px 5px 10px 5px green ,
+			 20px 20px 10px red inset;
+		}
+
+		/*当模糊度大于x与y值时"*/
+		.item:nth-child(16) .box-shadow {
+			box-shadow: 5px 5px 10px 0 red,
+			5px 5px 10px 5px green inset;	 
+		}
+		
+		/*当内阴影中模糊度大于x与y值时，原本没有内阴影的两边也会有blur px的模糊度*/
+		.item:nth-child(17) .box-shadow {
+			box-shadow: 5px 5px 10px 5px green inset;	 
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<h3>CSS3边框阴影</h3>
+		</header>
+		<div class="main">
+			<div class="item" data-brief="标准写法">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="左上角阴影">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="上面有阴影">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="下面有阴影">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="不设置模糊度blur">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="设置模糊度">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="只设置spread扩展值">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="当扩展值为负数">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="当扩展值为0">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="当扩展值为正数">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="多个内外阴影">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="是否会影响盒子布局">
+				<div class="box-shadow left"></div>
+				<div class="box-shadow right"></div>
+			</div>
+			<div class="item" data-brief="多个内阴影重叠">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="多个外阴影重叠">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="模糊度从哪里开始">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="当模糊度大于x与y值时">
+				<div class="box-shadow"></div>
+			</div>
+			<div class="item" data-brief="内阴影中模糊度大于x与y时">
+				<div class="box-shadow"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

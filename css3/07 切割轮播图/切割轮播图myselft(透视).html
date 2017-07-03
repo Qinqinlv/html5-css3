@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我做的切割轮播图</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .demo{
+            width:200px;
+            height:200px;
+            margin:100px auto;
+            background-color: pink;
+        }
+        .demo > ul {
+            width:100%;
+            height:100%;
+            list-style:none;
+            position: relative;
+            perspective: 150px;
+            transform-style:preserve-3d;
+            transition:transform 3s;
+        }
+        .demo > ul:hover {
+            transform: rotateY(360deg) rotateX(360deg);
+        }
+        .demo ul li {
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+        }
+        .demo ul > li:nth-of-type(1) {
+            transform:rotate(0deg) translateZ(100px) ;
+            background: url(images/1.jpg)  no-repeat center center;
+            -webkit-background-size:cover;
+            background-size:cover;
+        }
+        .demo ul > li:nth-of-type(2) {
+            transform:rotateY(90deg) translateZ(100px) ;
+            background: url(images/2.jpg)  no-repeat center center;
+            -webkit-background-size:cover;
+            background-size:cover;
+        }
+        .demo ul > li:nth-of-type(3) {
+            transform:rotateY(180deg) translateZ(100px) ;
+            background: url(images/3.jpg)  no-repeat center center;
+            -webkit-background-size:cover;
+            background-size:cover;
+        }
+        .demo ul > li:nth-of-type(4) {
+            transform:rotateY(-90deg) translateZ(100px) ;
+            background: url(images/4.jpg)  no-repeat center center;
+            -webkit-background-size:cover;
+            background-size:cover;
+        }
+        .demo ul > li:nth-of-type(5) {
+            transform:rotateX(-90deg) translateZ(100px) ;
+            background: url(images/4.jpg)  no-repeat center center;
+            -webkit-background-size:cover;
+            background-size:cover;
+        }
+        .demo ul > li:nth-of-type(6) {
+            transform:rotateX(90deg) translateZ(100px) ;
+            background: url(images/4.jpg)  no-repeat center center;
+            -webkit-background-size:cover;
+            background-size:cover;
+        }
+    </style>
+</head>
+<body>
+<div class="demo">
+    <ul>
+        <li>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </li>
+        <li>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </li>
+        <li>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </li>
+        <li>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </li>
+        <li>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </li>
+        <li>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>伸缩方向</title>
+	<style>
+	section header p{
+		height: 40px;
+		background-color: teal;
+		line-height: 40px;
+		margin:0;
+		padding: 0;
+	}
+		section .flex{
+			position: relative;
+			margin-top: 60px;
+			
+		}
+		section .flex ul{
+			display: flex;
+			min-height: auto;
+			list-style: none;
+
+		}
+		section .flex li{
+			width: 200px;
+			height: 200px;
+			margin:10px 10px 0 0 ;
+			background-color: pink;
+			line-height: 200px;
+			text-align: center;
+			
+		}
+		section .flex::after{
+			content: attr(data-brief);
+			position: absolute;
+			top:0;
+			left:0;
+			width: 100%;
+			height: 100%;
+			display: none;
+			background-color: rgba(0,0,0,.1);
+		}
+		section .flex:hover::after{
+			display: block;
+			text-align: center;
+			font:20px / 200px "Microsoft YaHei";
+		}
+		section .flex::before{
+			content:attr(data-brief);
+			position: absolute;
+			width: 100%;
+			height: 40px;
+			font:20px/40px "Microsoft YaHei";
+			top:-40px;
+			left: 0;
+			background-color: orange;
+		}
+		section .flex-direction1 ul{
+			flex-direction: row;
+		}
+		section .flex-direction2 ul{
+			flex-direction: row-reverse;
+		}
+		section .flex-direction3 ul{
+			flex-direction: column;
+		}
+		section .flex-direction4 ul{
+			flex-direction: column-reverse;
+		}
+		
+	</style>
+</head>
+<body>
+	<section>
+		<header>
+			<p>调整主轴方向（默认为水平方向）包括row、column、row-reverse、column-reverse</p>
+		</header>
+		<div class="flex flex-direction0" data-brief="flex-direction:默认">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="flex flex-direction1" data-brief="flex-direction:row">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="flex flex-direction2" data-brief="row-reverse">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="flex flex-direction3" data-brief="flex-direction:column">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="flex flex-direction4" data-brief="flex-direction:column-reverse">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+	</section>
+</body>
+</html>

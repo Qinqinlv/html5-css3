@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>渐变应用</title>
+	<style>
+		.main{
+			display: flex;
+			justify-content: space-around;
+			height: 400px;
+			background-color: #eee;
+		}
+		.main .demo{
+			flex:0 0 25%;
+			height: 200px;
+			margin:10px;
+			position: relative;
+			display: flex;
+		}
+		.main .demo::before{
+			content: attr(data-brief);
+			width: 100%;
+			font:20px/200px "Microsoft YaHei";
+			text-align: center;
+			position: absolute;
+			top:0;
+			left:0;
+			background-color: rgba(0,0,0,.1);
+			display: none;
+			
+		}
+		.main .demo:hover::before{
+			display: block;
+			
+		}
+		.main .demo div{
+			margin:auto;
+		}
+		.demo1{
+			background-color: pink;
+		}
+		.demo1 div{
+			width: 180px;
+			height: 80px;
+			background-color: green;
+			background-image: linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,.5));	
+		}
+		.demo2{
+
+			background-color: yellow;
+		}
+		.demo2 div{
+			width: 180px;
+			height: 180px;
+			border-radius: 50%;
+			background-color: blue;
+			background-image: radial-gradient(120px at 20% 20%,rgba(0,0,0,0),rgba(0,0,0,.5) );
+			/*径向渐变中第一个位置的数值是辐射半径，我之前学习的是定位在四个角或者是四条边，这里延伸到了任意一个数值。第二个位置的数值是圆心的位置。这个圆心的位置是相对于左上角的原点确定的。*/
+		}
+		.demo3{
+			background-color: orange;
+		}
+		.demo3 div{
+			width: 180px;
+			height: 40px;
+			background-color: teal;
+			background-image: linear-gradient(135deg,yellow 25%,transparent 25%,transparent 50%,yellow 50%, yellow 75%,transparent 75%);
+			background-size: 40px 40px;
+		}
+	</style>
+</head>
+<body>
+<div class="main">
+	<section class="demo demo1" data-brief="立体感按钮">
+		<div></div>
+	</section>
+	<section class="demo demo2" data-brief="球形">
+		<div></div>
+	</section>
+	<section class="demo demo3" data-brief="动态进度条">
+		<div></div>
+	</section>
+</div>
+</body>
+</html>

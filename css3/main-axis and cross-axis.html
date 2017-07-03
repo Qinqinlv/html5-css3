@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>主轴和侧轴的关系</title>
+	<style>
+		body,section,ul{
+			margin:0;
+			padding: 0;
+		}
+		header p{
+			font:21px/80px 'Microsoft YaHei';
+			background-color: orange;
+		}
+		.axis{
+			background-color: #eee;
+			margin-top: 60px;
+			position: relative;
+		}
+		.axis::before{
+			content: attr(data-brief);
+			position: absolute;
+			top:-40px;
+			height: 40px;
+			width: 100%;
+			line-height: 40px;
+			font-size: 20px;
+			background-color: teal;
+		}
+		.axis ul{
+			display: flex;
+			flex-direction: row;
+			justify-content:space-between;
+			align-items:flex-start;
+			list-style: none;
+			height: 400px;
+		}
+		.axis ul li{
+			margin:10px;
+			height: 200px;
+			background-color: pink;
+			flex: 0 0 200px;/*数值指的是主轴上的空间*/
+		}
+		.axis2 ul{
+			flex-direction: row-reverse;
+		}
+		.axis3 ul{
+			flex-direction: column;
+			height: 700px;
+		}
+		.axis3 ul li,
+		.axis4 ul li{
+			width: 200px;
+		}
+		.axis4 ul{
+			flex-direction: column-reverse;
+			height: 700px;
+		}
+		footer p{
+			padding: 20px 0;
+			white-space: pre-wrap;
+			font-size: 16px;
+			background-color: yellow;
+		}
+		footer div p{
+			background-color: orange;
+			padding: 80px 0;
+			margin-bottom: 100px;
+		}
+	</style>
+</head>
+<body>
+<header>
+	<p>在默认情况下，主轴从左到右，侧轴从上到下。那么，当主轴方向改变的时候，它对应的侧轴方向是怎样的呢？
+	</p>
+</header>
+	<section>
+		<div class="axis axis1" data-brief="flex-direction:row">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="axis axis2" data-brief="flex-direction:row-reverse">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="axis axis3" data-brief="flex-direction:column">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="axis axis4" data-brief="flex-direction:column-reverse">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</section>
+<footer>
+	<p>
+     	flex-start：交叉轴的起点对齐。
+     	flex-end：交叉轴的终点对齐。
+     	center：交叉轴的中点对齐。
+     	baseline: 项目的第一行文字的基线对齐。
+     	stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。
+	</p>
+	<div>
+		<p>总结一下，主轴一共可以有四个方向row,row-reverse,column,column-reverse，通过flex-direction来设置。主轴对应的侧轴和主轴自己垂直，只有两个方向：从上到下  /  从左到右</p>
+	</div>
+</footer>
+</body>
+</html>

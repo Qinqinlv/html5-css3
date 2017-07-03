@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文字间的距离变化</title>
+	<style>
+		body,div,span{
+			margin:0;
+			padding: 0;
+		}
+		.demo{
+			height: 120px;
+			background-color: orange;
+			text-align: center;
+			line-height: 120px;
+			font-size: 30px;
+		}
+		.demo span{
+			margin-right: 50px;
+			transition: margin-right 1s linear;
+		}
+		.demo:hover span{
+			margin-right: 20px;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="demo">
+		<span>4</span>
+		<span>亿</span>
+		<span>网</span>
+		<span>友</span>
+		<span>共</span>
+		<span>同</span>
+		<span>信</span>
+		<span>赖</span>
+	</div>
+</body>
+</html>

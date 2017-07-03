@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>传说中任何元素都能设置为flex布局</title>
+	<style>
+		body,section,ul{
+			margin:0;
+			padding: 0;
+		}
+		header p {
+			padding: 30px 0;
+			background-color: yellow;
+		}
+		footer p {
+			padding: 50px 0;
+			background-color:orange; 
+			margin:30px 0 100px 0;
+		}
+		.block ul,
+		.text div,
+		.span span{
+			display: flex;
+			justify-content:center;
+			height: 400px;
+			list-style: none;
+			background-color: #eee;
+			margin:30px 0;
+		}
+		.block ul li,
+		.text div span,
+		.span span i{
+			height: 200px;
+			flex: 0 0 200px;
+			background-color: pink;
+			margin:10px;
+		}
+		
+	</style>
+</head>
+<body>
+	<header>
+		<p>传说中，所有的html元素都可以设置为flex布局，那么设置为flex布局之后，就像float或者是position那样，脱离标准流了么？似乎flex container下面的子元素是处于另一个时空，宽高等都可以自由设置，这点像是inline-block，但是没有空白折叠现象，这点像float，可以设置margin:auto，这点是标准流的特征。</p>
+	</header>
+	<section class="block">
+		<div>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</section>
+	<section class="text">
+		<div>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</section>
+		<section class="span">
+		<span>
+			<i></i>
+			<i></i>
+			<i></i>
+		</span>
+	</section>
+	<footer>
+		<p>
+			总结：的确是所有的hmtl元素都可以设置flex布局，不管是span还是div。span和div都可以最flex container，也都可以做flex item。
+		</p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用c3做旋转木马</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        background: url(images/bg.jpg);
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+    .box {
+        width: 240px;
+        height: 240px;
+        margin: auto;
+        position: absolute;
+        bottom: 140px;
+        left: 0;
+        right: 0;
+        background-color: pink;
+        perspective: 1400px;
+    }
+    
+    .box audio {
+        position: absolute;
+        bottom: -150px;
+        right: -400px;
+    }
+    .box .img {
+        width: 240px;
+        height: 240px;
+        margin: auto;
+        background-color: purple;
+        position: relative;
+        transform-style: preserve-3d;
+        animation: xuanzhuan 20s linear infinite;
+    }
+    
+    .box .img ul li {
+        list-style: none;
+        width: 235px;
+        height: 235px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+    .box .img ul li img {
+        width: 235px;
+        height: 235px;
+        border: 3px solid pink;
+    }
+    
+    .box .img ul li:nth-of-type(1) {
+        transform: rotate(0deg) translateZ(260px);
+    }
+    
+    .box .img ul li:nth-of-type(2) {
+        transform: rotateY(60deg) translateZ(260px);
+    }
+    
+    .box .img ul li:nth-of-type(3) {
+        transform: rotateY(120deg) translateZ(260px);
+    }
+    
+    .box .img ul li:nth-of-type(4) {
+        transform: rotateY(180deg) translateZ(260px);
+    }
+    
+    .box .img ul li:nth-of-type(5) {
+        transform: rotateY(240deg) translateZ(260px);
+    }
+    
+    .box .img ul li:nth-of-type(6) {
+        transform: rotateY(300deg) translateZ(260px);
+    }
+    /*鼠标滑过.img盒子时，停止动画*/
+    
+    .box > .img:hover {
+        animation-play-state: paused;
+    }
+    
+    .box > .img li:hover img {
+        transform: scale(1.1);
+        border: 5px solid rgba(0, 0, 0, .5);
+    }
+    
+    .xin {
+        position: fixed;
+        bottom: 50px;
+        left: 60px;
+        opacity: 0;
+        animation: xin 8s linear infinite;
+    }
+    /*动画*/
+    
+    @keyframes xuanzhuan {
+        0% {
+            transform: rotateY(0deg);
+        }
+        to {
+            transform: rotateY(360deg);
+        }
+    }
+    
+    @keyframes xin {
+        0% {
+            opacity: 1;
+        }
+        /*从什么时候开始*/
+        20% {
+            bottom: 300px;
+            left: 300px;
+            opacity: 0;
+        }
+        40% {
+            bottom: 460px;
+            left: 680px;
+            opacity: 1;
+        }
+        60% {
+            bottom: 300px;
+            left: 900px;
+            opacity: 0;
+        }
+        80% {
+            bottom: 50px;
+            left: 1000px;
+            opacity: 1;
+        }
+        100% {
+            bottom: -150px;
+            left: 760px;
+            opacity: 0;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+    <audio src="like.mp3" controls="controls" loop="loop" autoplay="autoplay"></audio>
+        <div class="img">
+            <ul>
+                <li><img src="images/1.jpg" alt=""></li>
+                <li><img src="images/2.jpg" alt=""></li>
+                <li><img src="images/3.jpg" alt=""></li>
+                <li><img src="images/4.jpg" alt=""></li>
+                <li><img src="images/5.jpg" alt=""></li>
+                <li><img src="images/6.jpg" alt=""></li>
+            </ul>
+        </div>
+    </div>
+    <div class="xin">
+        <img src="images/xin.png" />
+    </div>
+    <!-- <div class="xin">
+        <img src="images/xin.png" />
+    </div>
+    <div class="xin">
+        <img src="images/xin.png" />
+    </div> -->
+</body>
+
+</html>
