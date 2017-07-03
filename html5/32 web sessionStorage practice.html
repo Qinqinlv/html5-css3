@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>临时会话存储练习</title>
+</head>
+<body>
+	<input type="text">
+	<button>sessionStorage存储</button>
+	<button>sessionStorage获取</button>
+	<button>sessionStorage更新</button>
+	<button>sessionStorage删除</button>
+	<button>sessionStorage清除</button>
+	<script>
+	/*
+    *  H5
+    *  sessionStorage    5M   存在内存中   关闭当前页面，数据销毁
+    *
+    *
+    * localStorage   20M   存储在硬盘上   断电不丢失 ，多个页面可以共享
+    * 
+    */
+		var txt = document.querySelector("input");
+		var btns = document.querySelectorAll("button");
+
+		//sessionStorage存储数据
+		btns[0].addEventListener("click",function () {
+			window.sessionStorage.setItem("userName",txt.value);
+			window.sessionStorage.setItem("userAge",23);
+			window.sessionStorage.setItem("data",12334);
+		})
+
+		//sessionStorage获取数据
+		btns[1].addEventListener("click",function () {
+			//window获取一个值，再将这个值赋值给某一个变量
+			txt.value = window.sessionStorage.getItem("userName");
+		})
+
+		//sessionStorage跟新数据（就是将新填入的txt.value覆盖掉之前的userName的值）
+		btns[2].addEventListener("click",function () {
+			 window.sessionStorage.setItem("userName",txt.value);
+		})
+
+		//sessionStorage删除数据 （一次只能删除一个）
+		btns[3].addEventListener("click",function () {
+			 window.sessionStorage.removeItem("userName");
+		})
+
+		//sessionStorage清空数据(由于是清空所有的数据，所以clear()方法不用传入参数)
+		btns[4].addEventListener("click",function () {
+			txt.value = window.sessionStorage.clear();
+		})
+
+
+	</script>
+</body>
+</html>

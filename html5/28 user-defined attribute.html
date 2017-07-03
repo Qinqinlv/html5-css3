@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width: 300px;
+			height: 100px;
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1" data-name="theBox" data-my-content="我是一只盒子"></div>
+	<script>
+		//h5当中的自定义属性，必须以data-开头
+		//之前学习对象的时候，知道只要是复杂数据类型，就可以任意添加属性，简单数据类型也有自己的属性和方法，但是不能自定义。数组和对象，jason都是可以自定义属性和方法的。比如，给一个DOM对象添加一个属性如下：
+		var box1 = document.querySelector(".box1");
+		box1.index = 100;//这个index就是给box1对象自定义的属性
+
+		//获取自定义属性的值。js提供了dataset对象来获取。用法是：dataset[自定义属性值]
+		var val = box1.dataset["name"];
+		console.log(val);
+		console.log(box1.dataset["myContent"]);//js不支持短横线，所以使用驼峰方式书写
+
+		//设置自定义属性的值
+		box1.dataset["name"] = "盒子的名字";
+		console.log(box1.dataset["name"] );
+	</script>
+</body>
+</html>

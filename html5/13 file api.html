@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文件api</title>
+	<link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body>
+<form action="">
+<!-- multiple是多选的意思 -->
+<input id="input_file" class="hidden" type="file" name="input_file" multiple >
+	<!-- 对于表单里的input，可以直接通过name属性找到 document.form[0].input_file-->
+	<!-- 文件域有一个属性files，可以得到文件域所选择文件的基本信息。如：document.form[0].input_file.files,得到的是一个类数组 -->
+	<!-- 由于页面中有很多对于表单的操作，所以可以直接通过document.forms来获取表单元素，
+	document.forms == document.getElementsByTagName("form");
+ -->
+ <input id="btn_select" class="btn btn-info" type="button" value="选择文件">
+ <!-- <input id="btn_read" class="btn btn-warning" type="button" value="读取文件列表"> -->
+ <ul id="file_list" class="list-group"></ul>
+</form>
+<script>
+	(function () {
+		//实现的效果是点击“获取文件”按钮，就获取文件的信息
+
+		//实现的效果是，点击文件域上传文件后，再点击“读取文件列表”按钮，就可以拿到每一个被上传文件的信息
+		var inputFile = document.querySelector("#input_file");
+		var btnRead = document.querySelector("#btn_read");
+		var fileList = document.querySelector("#file_list");
+		//当点击btnRead的时候，将被选择文件的信息，添加到li中，再将li添加到ul中
+		// btnRead.addEventListener("click",function () {
+		// 	var files = inputFile.files;
+		// 	for(var i = 0 ; i < files.length;i++){
+		// 		var liElement = document.createElement("li");
+		// 		liElement.setAttribute("class","list-group-item");
+		// 		liElement.innerHTML ='<h5 class="list-group-item-heading">'+files[i].name+'</h5> +<p class="list-group-item-text">'+files[i].lastModifiedDate.toLocaleDateString()+' '+files[i].lastModifiedDate.toLocaleTimeString() + ' '+ '尺寸'+ files[i].size.toFixed(2) +'</p>';
+		// 		fileList.appendChild(liElement);
+		// 	}
+		// })
+
+		//用css样式将原先的文件域隐藏，因为文件域的样式无法直接修改，太丑了，所以将其隐藏后，新建了一个按钮代替，当点击这个新建的按钮时，文件域也同样被触发一次，这样就可以在文件域被隐藏的情况下依旧能够选择文件。
+		var btnSelect = document.querySelector("#btn_select");
+		btnSelect.addEventListener("click",function () {
+			//在点击btnSelect这个按钮的时候，调用inputFile的点击事件
+			inputFile.click();
+		})
+
+		//下面实现的效果是，点击完文件域之后，就直接显示文件的内容，不用再多去点击一个“获取文件内容按钮”
+		inputFile.addEventListener("change",function () {//change是当内容发生改变时触发的事件
+			var files = inputFile.files;
+			for(var i = 0 ; i < files.length;i++){
+				var liElement = document.createElement("li");
+				liElement.setAttribute("class","list-group-item");
+				liElement.innerHTML ='<h5 class="list-group-item-heading">'+files[i].name+'</h5> +<p class="list-group-item-text">'+files[i].lastModifiedDate.toLocaleDateString()+' '+files[i].lastModifiedDate.toLocaleTimeString() + ' '+ '尺寸'+ files[i].size.toFixed(2) +'</p>';
+				fileList.appendChild(liElement);
+			}
+		})
+	})();
+</script>
+</body>
+</html>

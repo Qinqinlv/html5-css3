@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加历史记录</title>
+</head>
+<body>
+	<input type="button" onclick="add()" value="添加一个历史记录">
+	<button>后退</button>
+	<script>
+		function add(){
+			//判断浏览器是否支持history这个API,以及是否支持history的pushState方法
+			if(window.history && history.pushState){
+				//支持的话，就添加历史记录的状态（浏览哪一个，就把哪一个的各种状态通过pushstate（）添加到浏览器的history对象中存储起来
+				// history.pushState("添加进历史记录的具体数据","设置历史状态显示的标题，但是浏览器不支持","希望历史记录显示在url中的search部分")；
+				
+				history.pushState("数据","设置历史状态显示的标题","?demo=" + new Date().toLocaleTimeString());
+				//new Date()获取的是一个时间对象，可以将其转换为时间/日期的字符串
+				//toLocalTimeString()转换为我们能认识的时间字符串
+				//toLocalDateString()转换为我们能认识的日期字符串
+
+			}else{
+				console.log(111);
+			}
+		}
+	</script>
+</body>
+</html>

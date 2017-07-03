@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>全屏练习1</title>
+	<style>
+		.demo {
+			width: 200px;
+			height: 200px;
+			background-color: pink;
+			border-radius: 50%;
+			margin:100px auto;
+			}		
+			.demo:-webkit-full-screen {
+				background-color: orange;
+			}
+			.demo > .child {
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				margin:0 auto 50px;
+				text-align: center;
+				line-height: 100px;
+				background-color: green;
+				color: violet;	
+			}
+			.demo:-webkit-full-screen > .child {
+				background-color: teal;
+				color: yellow;	
+			}
+	</style>
+</head>
+<body>
+	<div class="demo">
+		<div class="child">
+			我demo之子
+		</div>
+	</div>
+	<script>
+		var demo = document.querySelector(".demo");
+		demo.addEventListener("click",function () {
+			if(demo.requestFullscreen){
+				demo.requestFullscreen();
+			}else if (demo.webkitRequestFullScreen) {
+				demo.webkitRequestFullScreen();
+			}else if (demo.mozRequestFullScreen){
+				demo.mozRequestFullScreen();
+			}
+		})
+	</script>
+</body>
+</html>

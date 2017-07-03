@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>拖放事件练习（js）版</title>
+</head>
+
+<body>
+    <style>
+    .demo {
+        width: 400px;
+        height: 250px;
+        border: 1px solid #ccc;
+    }
+    
+    .demo > div,
+    .box > div {
+        float: left;
+        width: 98px;
+        height: 98px;
+        background-color: red;
+        cursor: pointer;
+        border-radius: 50%;
+        border: 1px solid #888;
+        text-align: center;
+        line-height: 98px;
+    }
+    
+    .box {
+        width: 400px;
+        height: 250px;
+        position: absolute;
+        right: 50px;
+        top: 200px;
+        border: 1px solid #ccc;
+    }
+    
+    .box.active {
+        box-shadow: 0 0 100px red inset;
+        color: orange;
+        font-size: 20px;
+    }
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    </head>
+
+    <body>
+        <div class="demo">
+            <div draggable="true">1</div>
+            <div draggable="true">2</div>
+            <div draggable="true">3</div>
+            <div draggable="true">4</div>
+            <div draggable="true">5</div>
+            <div draggable="true">6</div>
+            <div draggable="true">7</div>
+            <div draggable="true">8</div>
+        </div>
+        <div class="box"></div>
+        <script>
+        //目标：拖拽.demo盒子中的child，将其拖入.box盒子中
+        //思路：
+        /*1.获取被操作的元素
+         *2.child被拖入box盒子中，触发box的dragenter事件
+         *3.消除触发box盒子的dragover事件的默认行为
+         *4.box盒子接收被拖入的child,demo盒子中对应的child被移除
+         */
+         // 1.获取被操作的元素
+         var demo = document.querySelector(".demo");
+         var box = document.querySelector(".box");
+         var divs = document.querySelectorAll(".demo > div");
+
+         // 2.记录下每一个被拖拽的child盒子
+         var temp = null;//临时存放当前被拖拽的盒子
+         for(var i = 0 ; i < divs.length;i++) {
+         	divs[i].addEventListener("dragstart",function () {
+         		temp = this;
+         	})
+         }
+        //应用于被拖放元素
+        // ondrag 		应用于拖拽元素，整个拖拽过程都会调用
+        // ondragstart	应用于拖拽元素，当拖拽开始时调用
+        // ondragleave	应用于拖拽元素，当鼠标离开拖拽元素时调用
+        // ondragend	应用于拖拽元素，当拖拽结束时调用
+
+        //应用于放置被拖放元素的盒子
+        // ondragenter	应用于目标元素，当拖拽元素进入时调用
+        // ondragover	应用于目标元素，当停留在目标元素上时调用
+        // ondrop		应用于目标元素，当在目标元素上松开鼠标时调用
+        // ondragleave	应用于目标元素，当鼠标离开目标元素时调用
+
+
+        // 3.child被拖入box盒子中，触发box的dragenter事件
+      	box.addEventListener("dragenter",function () {
+      		this.classList.add("active");
+      	})
+
+
+        // 4.消除触发box盒子的dragover事件的默认行为
+        $(".box").on("dragover", function(e) {
+            // ondragover事件规定在何处放置被拖动的数据。默认的，无法将数据/元素放置到其它元素中。如果需要设置允许放置，我们必须阻止对称元素的默认处理方式
+            e.preventDefault();
+        })
+
+        // 5.box盒子接收被拖入的child,demo盒子中对应的child被移除
+       box.addEventListener("drop",function () {
+       		this.appendChild(temp);
+       		temp = null;
+       })
+        </script>
+    </body>
+
+</html>

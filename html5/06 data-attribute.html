@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>使用自定义属性data 动态生成li和li中的文本</title>
+</head>
+<body>
+	<ul id="list"></ul>
+	<script>
+		// 键是ID 值是信息
+    var data = {
+      01: {
+        name: "张三1",
+        age: 18
+      },
+      02: {
+        name: "张三2",
+        age: 19
+      },
+      03: {
+        name: "张三3",
+        age: 20
+      }
+    };
+    var ulList = document.getElementById("list");
+    //遍历传入的jason,并将每个人的名字放进li中，
+    //让li动态生成data-name和date-age的属性,再将li动态添加到ul中
+    for( var key in data) {
+        var item = data[key];
+        var liEle = document.createElement("li");
+        //将姓名添加到li中
+        liEle.appendChild(document.createTextNode(item["name"]));
+        liEle.setAttribute("data-name",item.name);
+        liEle.setAttribute("data-age",item.age);
+        liEle.setAttribute("data-id",item.key);
+        ulList.appendChild(liEle);
+        liEle.addEventListener("click",function(){
+        	console.log(this.dataset["name"]);
+        })
+        //在浏览器打开一个富文本编辑器：data:text/html,<html contenteditable />
+    }
+	</script>
+</body>
+</html>

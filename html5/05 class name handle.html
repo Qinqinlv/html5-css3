@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>类名操作</title>
+	<style>
+		div{
+			width:300px;
+			height: 80px;
+			border: 1px solid #333;
+		}
+		.active{
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div class="box box1"></div>
+	<div class="box box2"></div>
+	<div class="box box3"></div>
+	<div class="box box4"></div>
+	<script>
+		//h5新增的js的API
+		//document.querySelector(".box")只会选择符合(".box")中选择器条件的第一个元素
+		var box1 = document.querySelector(".box");
+		//只有第一个div的背景颜色会发生变化
+		// box1.style.backgroundColor = "red";
+
+
+		//选择所有符合条件的元素
+		//选择出来的是一个类数组
+		// var divs = document.querySelectorAll(".box");
+		// for( var i = 0;i < divs.length;i++){
+		// 	divs[i].style.backgroundColor = "orange";
+		// }
+
+		//注意使用document.querySelctor和document.querySelectorAll选择DOM对象的时候，括号中可以写任意种类的CSS选择器，和jQuery中$符中的选择器一样。
+
+
+		//类名的操作，在jQuery中，操作类名是这样的：(jQuery中操作类名的方法中，类名均不带点)
+		/*$(".box").addClass("active");$(".box").removeClass("active");$(".box").hasClass("active");
+		$(".box").toggleClass("active");*/
+		//在js中，使用类名的方法是这样的：
+		//添加类名：
+		box1.classList.add("active");
+
+		//删除类名：
+		box1.classList.remove("active");
+
+		//判断有无类名：
+		var panduan = box1.classList.contains("active");
+		console.log(panduan);
+
+		//切换类名，有则删除，无则添加
+		box1.addEventListener("click",function(){
+			box1.classList.toggle("active");
+		})
+		
+	</script>
+</body>
+</html>

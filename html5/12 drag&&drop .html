@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>拖放操作</title>
+  <meta name="author" content="汪磊">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <style>
+    #target {
+      padding: 20px;
+      height: 300px;
+      border: 5px dashed #c0c0c0;
+      color: #e0e0e0;
+      font-size: 40px;
+      line-height: 260px;
+      text-align: center;
+      -webkit-user-select: none;
+      cursor: pointer;
+    }
+    
+    #target.actived {
+      border-color: #888;
+      color: #eaeaea;
+      box-shadow: 0 0 80px #e0e0e0 inset;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>Drag&&Drop</h1></div>
+    <div class="jumbotron">
+      <p>你好啊，你今年几岁啊，哈哈，我的今天在哪里</p>
+      <img src="toy.png" alt="">
+    </div>
+    <div id="target">
+      Drag something into here
+      <ul id="result" class="list-group"></ul>
+    </div>
+    <br>
+  </div>
+  <script>
+   (function () {
+     //要实现的函数的功能是：将文字、图片或者是文件拖入一个框中显示
+     //当有内容拖入时，盛放拖入内容的盒子的样式发生改变。
+     var target = document.querySelector("#target");
+     var fileList = document.querySelector("#result");
+
+     // 1.  注册拖入事件，当有内容被拖入到盒子中时触发的事件dragenter(事件都是小写)
+     target.addEventListener("dragenter",function () {
+       this.classList.add("actived");
+     })
+
+     // 2.  当内容被拖出盒子时触发的事件dragleave（没有松开鼠标将内容放到盒子里）
+     target.addEventListener("dragleave",function () {
+       this.classList.remove("actived");
+     })
+
+     // 3.  当内容被拖入或拖出盒子的时候，要阻止将内容拖入或拖出盒子的默认事件（这是一个约定，要不然盒子就无法捕获到将内容拖入盒子的drop事件）
+     target.addEventListener("dragover",function (e) {
+       // target.classList.remove("actived");
+       //阻止默认事件
+      e.preventDefault();
+       //阻止冒泡
+      e.stopPropagation();
+
+     })
+
+
+     // 4.  当鼠标将内容拖到盒子上方时，松开鼠标内容会被弹回原来的位置，这是因为没有给盒子添加drop事件。顾名思义，drop事件是捕获内容掉落事件。drop事件，是当被拖入的内容在松开鼠标时被触发的。被捕获到的内容的详细信息都记录在e中，可以通过对e的操作，获取各种值、赋值等
+    target.addEventListener('drop', function(e) {
+       //清除actived类
+      this.classList.remove("actived");
+      console.log(e);
+      
+       // a.  掉落进盒子的内容分成三种：文件/纯文本/图片
+       // b.  被拖入的数据的信息被存放在e中，数据的具体内容，比如文本/图片/文件都被存放在e事件对象的dataTransfer对象中。
+       // c.  获取文本和图片的方式是e.dataTransfer.getData();获取文件的方式是：e.dataTransfer.files获取的是文件类数组。和之前学习的document.forms[0].input_file.files获取文件域表单中上传的文件对象是一样的
+       // d.  获取纯文本的方式：e.dataTransfer.getData('text/plain');获取图片的方式是：e.dataTransfer.getData('text/uri-list')
+
+       //判断拖入的是否是文件
+      if (e.dataTransfer.files.length) {
+          var files = e.dataTransfer.files;
+          for (var i = 0; i < files.length; i++) {
+            var li = document.createElement('li');
+            li.setAttribute('class', 'list-group-item');
+            // 创建信息的子节点
+            li.innerHTML = '<h5 class="list-group-item-heading">' + files[i].name + '</h5><p class="list-group-item-text">' + files[i].lastModifiedDate.toLocaleDateString() + ' ' + files[i].lastModifiedDate.toLocaleTimeString() + ' ' + (files[i].size / 1024).toFixed(2) + 'KB</p>';
+            fileList.appendChild(li);
+          }
+        }
+       else{
+        var content = e.dataTransfer.getData('text/plain');
+        if(content){//如果是纯文本
+        target.innerHTML = content;
+       
+       }else{//如果是图片
+        
+        var imag = document.createElement('img');
+        imag.setAttribute('src',e.dataTransfer.getData('text/uri-list'));
+        target.appendChild(imag);
+
+       }
+         //将图片拖入盒子中，默认情况下是打开这张图片（也就是会显示图片的存储路径），如果想让图片显示的话，需要阻止默认拖入打开事件
+        e.preventDefault();
+        e.stopPropagation();
+       }
+       
+       
+     })
+
+   })();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽事件</title>
+	<style>
+		.demo {
+			 width: 200px;
+			 height: 200px;
+			 background-color: pink;
+		}
+	</style>
+	<script src="jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<!-- 在HTML5的规范中，我们可以通过为元素增加属性draggable="true"来设置此元素是否可以进行拖拽操作，其中图片、链接默认是开启的。 -->
+	<div class="demo" draggable="true"></div>
+	<script>
+		// 关于拖拽，有许多事件可以监听
+		/*拖放是一种常见的特性，即抓取对象以后拖到另一个位置。
+		在 HTML5 中，拖放是标准的一部分，任何元素都能够拖放。*/
+
+		// ondrag 	应用于拖拽元素，整个拖拽过程都会调用
+		// ondragstart	应用于拖拽元素，当拖拽开始时调用
+		// ondragleave	应用于拖拽元素，当鼠标离开拖拽元素时调用
+		// ondragend	应用于拖拽元素，当拖拽结束时调用
+		$(function () {
+			$(".demo").on("dragstart",function () {
+				console.log("拖拽事件开始");
+			})
+//拖拽离开，指的是鼠标离开原本被拖拽的盒子
+			$(".demo").on("dragleave",function () {
+				console.log("拖拽事件离开");
+			})
+
+//拖拽结束，就是松开鼠标
+			$(".demo").on("dragend",function () {
+				console.log("拖拽事件结束");
+			})
+
+			$(".demo").on("drag",function () {
+				console.log("整个拖拽过程中都在触发");
+			})
+		})
+	</script>
+</body>
+</html>

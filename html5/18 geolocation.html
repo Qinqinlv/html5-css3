@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取对用户终端的地理定位</title>
+</head>
+<body>
+
+</body>
+<script>
+//    navigator 导航
+//    geolocation:地理定位
+//    兼容处理
+    if(navigator.geolocation) {
+        //如果支持该属性，则可以获取用户的地理信息
+        //successCallback 当获取用户地理位置成功的回调函数
+        //errorCallback 当获取用户地理位置失败的回调函数
+        navigator.geolocation.getCurrentPosition(successCallback,errorCallback);
+
+    }else {
+        console.log("sorry,你的浏览器不支持地理定位");
+    }
+
+    //获取地理位置成功的回调函数
+    function successCallback(position) {
+//        获取用户当前的经纬度
+//        coords  坐标
+//        纬度  latitude
+        var wd = position.coords.latitude;
+//        经度  longitude
+        var jd = position.coords.longitude;
+
+        console.log("获取用户位置成功");
+        console.log(jd + "_________________" + w d);
+    }
+
+// 获取的地理定位：30.665532672271_________________104.13393236136
+
+
+//获取地理位置失败的回调函数
+     function errorCallback(error){
+         console.log(error);
+         console.log("获取用户位置失败");
+     }
+
+</script>
+
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

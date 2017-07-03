@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用自定义标签属性实现tab栏切换</title>
+    <style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #F7F7F7;
+		}
+	
+		.tabs {
+			width: 400px;
+			margin: 30px auto;
+			background-color: #FFF;
+			border: 1px solid #C0DCC0;
+			box-sizing: border-box;
+		}
+
+		.tabs nav {
+			height: 40px;
+			text-align: center;
+			line-height: 40px;
+			overflow: hidden;
+			background-color: #C0DCC0;
+			display: flex;
+		}
+
+		nav a {
+			display: block;
+			width: 100px;
+			border-right: 1px solid #FFF;
+			color: #000;
+			text-decoration: none;
+		}
+
+		nav a:last-child {
+			border-right: 0 none;
+		}
+
+		nav a.active {
+			background-color: #9BAF9B;
+		}
+
+		.cont {
+			overflow: hidden;
+			display: none;
+		}
+
+		.cont ol {
+			line-height: 30px;
+		}
+
+    </style>
+</head>
+<body>
+	<div class="tabs">
+		<nav>
+			<a href="javascript:;" data-cont="local">国内新闻</a>
+			<a href="javascript:;" data-cont="global">国际新闻</a>
+			<a href="javascript:;" data-cont="sports">体育新闻</a>
+			<a href="javascript:;" data-cont="funny">娱乐新闻</a>
+		</nav>
+		<section class="cont" id="local" >
+			<ol>
+				<li>河感在生矿难，死伤在全10</li>
+				<li>禽流感在感在广1处继续蔓延，温家宝指示</li>
+				<li>南方大旱，农作物减产绝收面积上亩</li>
+				<li>猪流感在广在全国暴发</li>
+				<li>禽流感在全国多处继续蔓延，温家宝指示</li>
+				<li>南方大旱，农作物减产绝收面积上亩</li>
+				<li>猪流感在广东群体性暴发</li>
+			</ol>
+		</section>
+		<section class="cont" id="global">
+			<ol>
+				<li>河南再次发生矿难，死伤人数超过100</li>
+				<li>禽流感次发生蔓延，温家宝指示</li>
+				<li>南方大旱，农作物减产绝收面积上亩</li>
+				<li>猪流感在广减产绝收发</li>
+				<li>禽流感在全国多作物减产绝收面积上亩</li>
+				<li>猪流感在广东群体性暴发</li>
+			</ol>
+		</section>
+		<section class="cont" id="sports">
+			<ol>
+				<li>河南再次发生矿难，死伤人数超过100</li>
+				<li>禽流感在全国多处农作物农延，温家宝指示</li>
+				<li>南方大旱，农作物减产绝收面积上亩</li>
+				<li>猪流感在广东群体性暴发</li>
+				<li>禽流感在全农作物继续蔓延，温家宝指示</li>
+				<li>南方大农作物减产绝收面积上亩</li>
+				<li>猪流感在广东群体性暴发</li>
+			</ol>
+		</section>
+		<section class="cont" id="funny">
+			<ol>
+				<li>福建发生血腥命案:两女遭割喉 1男孩被砍数刀</li>
+				<li>四川原副省长李成云被查 5年前曾违纪又复出</li>
+				<li>胡歌反对粉丝探班：以前请吃饭现在会黑脸</li>
+				<li>曝郑爽爸爸歌厅撩妹 与女子勾肩搭背显亲密</li>
+				<li>宜宾公安副局长无证驾驶出车祸 弃车离开现场</li>
+				<li>国子监大街门匾现错字 已悬挂近10年(图)</li>
+				<li>猪流感在广东群体性暴发</li>
+			</ol>
+		</section>
+    </div>
+    <script>
+    
+    //好吧，在直接调用匿名函数的时候，要用括号把整个函数括起来，这样在测试的时候才没有bug
+
+    (function (key){
+    	//传入一个key参数，那么索引为key的a链接和相应索引的section显示
+    	//首先，要获取到所有的a链接
+    	var navs = document.querySelectorAll("nav a");
+    	for(var i = 0;i < navs.length;i++){
+    		if(key == i){
+    			navs[i].classList.add("active");
+    			//获取和a链接对应的section的id
+    			var secId = navs[key].dataset["cont"];
+    			document.querySelector("#"+secId).style.display = "block";
+    		}
+    		//不用写else，下面直接定义点击事件
+    		navs[i].addEventListener("click",function(){
+
+    			//发生点击事件后，首先要清掉之前添加了active类的a链接，对应的section隐藏
+    			//依旧使用h5的自定义属性来实现排他效果，这样就不用写循环了
+    			var currentA = document.querySelector("nav a.active");
+    			currentA.classList.remove("active");
+    			var currentId = currentA.dataset["cont"];
+    			document.querySelector("#"+currentId).style.display = "none";
+
+    			//第二，当前的a链接获得active类，对应的section显示
+    			this.classList.add("active");
+    			document.querySelector("#"+this.dataset["cont"]).style.display = "block";
+
+    		})
+    	}
+    })(2);
+    //由于这个函数一共只调用一次，所以直接写成匿名函数就可以了,然后直接调用匿名函数即可
+		   // tabs(2);
+	</script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自己制作的一个媒体播放器</title>
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <style>
+    body,
+    section,
+    div,
+    figure,
+    figcaption,
+    span,
+    button {
+        margin: 0;
+        padding: 0;
+    }
+    
+    section {
+        width: 720px;
+        margin: 50px auto;
+    }
+    
+    section figcaption {
+        height: 40px;
+        font: 30px / 40px "Microsoft YaHei";
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    section .player {
+        width: 720px;
+        height: 360px;
+        background: #000 url(images/loading.gif) no-repeat center center;
+        text-align: center;
+        position: relative;
+    }
+    
+    section .player > video {
+        height: 100%;
+        /*display: none;*/
+    }
+    
+    section .player .control {
+        height: 30px;
+        width: 700px;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background-color: rgba(255, 0, 0, .3);
+        border-radius: 20px;
+    }
+    
+    section .player .control > .switch {
+        width: 15px;
+        height: 15px;
+        /*background-color: rgba(255, 255, 0, .4);*/
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translate(0, -50%);
+        text-align: center;
+        line-height: 15px;
+        color: green;
+        cursor: pointer;
+    }
+    
+    section .player .control > .total-progress {
+        width: 480px;
+        height: 10px;
+        position: absolute;
+        top: 10px;
+        left: 40px;
+        background-color: orange;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    
+    section .player .control > .total-progress > .current-pro {
+        width: 40%;
+        height: 100%;
+        background-color: #fff;
+    }
+    
+    section .player .control > .time {
+        height: 20px;
+        width: 120px;
+        position: absolute;
+        text-align: center;
+        font: 12px / 20px "Microsoft YaHei";
+        left: 540px;
+        top: 5px;
+        border-radius: 10px;
+        background-color: blue;
+    }
+    
+    section .player .control > .extend {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        text-align: center;
+    	line-height: 20px;
+    	color: red;
+        /*background-color: red;*/
+    }
+    </style>
+</head>
+
+<body>
+    <section>
+        <figure>
+            <figcaption>自己模拟的视频播放器</figcaption>
+            <div class="player">
+                <video src="video/fun.mp4"></video>
+                <!-- 控制条 -->
+                <div class="control">
+                    <!-- 开关 -->
+                    <span class="switch fa fa-play"></span>
+                    <!-- 进度条 -->
+                    <div class="total-progress">
+                        <div class="current-pro"></div>
+                    </div>
+                    <!-- 时间轴 -->
+                    <div class="time">
+                        <span class="curr-time">00:00:00</span>/<span class="total-time">00:00:00</span>
+                    </div>
+                    <!-- 全屏 -->
+                    <span class="extend fa fa-expand"></span>
+                    
+                </div>
+            </div>
+        </figure>
+    </section>
+    <script>
+    	//思路
+    	/*
+    	* 1.点击按钮，实现播放、暂停并且切换视频和gif图
+    	* 2.获取到当前视频的总时间
+    	* 3.当视频播放的时候，进度条同步，当前时间同步
+    	* 4.点击全屏按钮，实现全屏效果
+    	*/
+    	
+    	//先获取需要的元素
+    	// 获取section元素
+    	var play = document.querySelector('.player');
+    	//获取video
+    	var video = document.querySelector('video');
+    	//获取开关
+    	var playBtn = document.querySelector('.switch');
+    	// 获取全屏按钮
+    	var extend = document.querySelector('.extend');
+    	// 获取总进度条
+    	var totalPro = document.querySelector('.total-progress');
+    	// 获取当前的进度
+    	var currentPro = document.querySelector('.current-pro');
+    	// 获取总时间
+    	var totalTime = document.querySelector('.total-time');
+    	// 获取当前的时间
+    	var currentTime = document.querySelector('.curr-time');  
+
+    	//1.点击按钮，实现播放、暂停并且切换视频和gif图
+    	playBtn.addEventListener("click",function () {
+    		// 当视频播放的时候，点击暂停视频
+    		// 当视频停止的时候，将当前的播放按钮调整为停止时的字体图标
+    		if(video.paused){
+    			// 播放
+    			video.play();
+    			// console.log(111);
+    			this.classList.remove('fa-play');
+    			this.classList.add('fa-pause');
+    		}else {
+    			 // 暂停
+    			video.pause();
+    			// 当视频播放的时候，将当前的播放按钮调整为对应播放的字体图标
+    			this.classList.remove('fa-pause');
+    			this.classList.add('fa-play');
+    		}
+
+    		
+
+    	})
+
+
+    	// 2.获取到当前视频的总时间（事件：当视频可以被播放时）
+    		// 在w3c的手册中，展示了音视频支持的所有属性和方法，其中获取某个视频或者音频的属性是duration
+    		video.addEventListener("canplay",function () {
+    			// console.log(111);
+    			var tTime = video.duration;
+    			console.log(tTime);
+    		
+    		// 这两种方式都可以
+    		// video.oncanplay = function () {
+    		// 	console.log(111);
+    		// 	var tTime = video.duration;
+    		// 	console.log(tTime);
+    		// }
+
+    		// duration得到是秒钟数，要将其转化为00:00:00的方式
+    		// 得到小时数
+    		var h = Math.floor(tTime / 3600);
+
+    		// 得到分钟数
+    		var m = Math.floor(tTime % 3600 /60);
+
+    		// 得到秒钟数
+    		var s = Math.floor(tTime % 60);
+
+    		// 将得到的时分秒，添加到00:00:00中
+    		 h <= 9? h = '0' + h : h ;
+    		 m <= 9? m = '0' + m: m;
+    		 s <= 9? s = '0' + s: s;
+    		 totalTime.innerHTML = h + ':' + m + ':' + s;
+    		 console.log(totalTime.innerHTML);
+    		 })
+
+    		// 3.当视频播放的时候，进度条同步，当前时间同步
+    		// 获取当时视频播放的时间，需要触发timeupdate事件（当目前的播放位置已更改时）
+    		video.addEventListener("timeupdate",function () {
+    			// 获取当前视频已经播放的时间
+    			var tTime = video.duration;
+    			var cTime = video.currentTime;
+    			// console.log(cTime);
+
+    			// 将这个当前的时间也转换成00:00:00格式的时分秒
+    			// 获取小时
+    			var h = Math.floor(cTime / 3600);
+    			// console.log(h);
+
+    			// 获取分钟
+    			var m = Math.floor(cTime % 3600 / 60);
+    			// console.log(m);
+
+    			// 获取秒钟
+    			var s = Math.floor(cTime % 60);
+    			// console.log(s);
+
+    			h = h >= 10 ? h : "0" + h;
+    			m = m >= 10 ? m : "0" + m;
+    			s = s >= 10 ? s : "0" + s;
+
+    			currentTime.innerHTML = h + ":" + m + ":" + s;
+    			// console.log(currentTime.innerHTML);
+
+    			// 进度条跟新——当前时间 / 总时间的比例 = 当前进度 / 进度条总长度
+    			var bili = cTime / tTime;
+    			// console.log(bili);
+    			currentPro.style.width = bili * 100 + "%";
+    			
+    			console.log(currentPro.style.width);
+
+    		})
+
+    		// 4.点击全屏按钮，实现全屏效果
+    		extend.addEventListener("click",function (e) {
+    			if(video.webkitRequestFullScreen){
+    				video.webkitRequestFullScreen();
+    				// playBtn.style.cursor = "pointer";该句无效
+    				e.preventDefault();
+    			}
+    		})
+
+    		// 点击进度条的任何一个位置，进度条就跳到某一个位置，当前时间也跟着改变
+    		totalPro.addEventListener("click",function (e) {
+    			var length = e.clientX();
+    		})
+
+    </script>
+</body>
+
+</html>

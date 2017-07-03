@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- 普通的下拉菜单 -->
+	<select name="" id="">
+		<option value="">宝马</option>
+		<option value="">奔驰</option>
+		<option value="">福特</option>
+		<option value="">大众</option>
+	</select>
+
+	<!-- 智能表单的下拉列表（带有自动提示功能） -->
+	<input type="text" list="car" />
+	 <datalist id="car">
+		<option>奥迪</option>
+		<option>玛莎拉蒂</option>
+		<option>奔驰</option>
+		<option>大众</option>
+	</datalist>
+	<!-- 这个datalist中的option中不能带value，带了value就不起作用了，这是什么鬼？ -->
+</body>
+</html>

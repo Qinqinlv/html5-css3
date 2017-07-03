@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<input type="button" value="前进" class="btn1">
+<input type="button" value="后退" class="btn2">
+<input type="button" value="刷新" class="btn3">
+<a href="input type.html">previous</a>
+	<script>
+		var btn1 = document.querySelector(".btn1");
+		var btn2 = document.querySelector(".btn2")
+		var btn3 = document.querySelector(".btn3")
+		btn1.addEventListener('click',function(e){
+			window.history.forward();
+		});
+		btn2.addEventListener('click',function(e){
+			window.history.back();
+		});
+		btn3.addEventListener('click',function(e){
+			//go函数可以传入一个地址，不传的话默认是刷新当前页面
+			window.history.go();
+
+		});
+	</script>
+</body>
+</html>
